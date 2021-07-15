@@ -1,12 +1,47 @@
 <!DOCTYPE html>
 <html>
+  <!DOCTYPE html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <title>ToDoList</title>
-    
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>TODO APP</title>
   </head>
   <body>
-    This is a do list app
+    <div class="container">
+      <header class="header">
+        <h2 class="title">Today's todo</h2>
+        <i class="fas fa-sync-alt"></i>
+      </header>
+      <input type="text" class="todo-input" placeholder="Add to your list..." />
+      <ul class="todo">
+        <li class="todo__list-item">
+          <div>
+            <input type="checkbox" id="todo-list-1" class="todo__list-input" />
+            <label for="todo-list-1">Wash the dishes</label>
+          </div>
+          <i class="fas fa-ellipsis-v todo__list-menu-icon"></i>
+        </li>
+        <li class="todo__list-item">
+          <div>
+            <input type="checkbox" id="todo-list-2" class="todo__list-input" />
+            <label for="todo-list-2">Complete todo list project</label>
+          </div>
+          <i class="fas fa-ellipsis-v todo__list-menu-icon"></i>
+        </li> 
+      </ul>
+      <button class="button">Clear all completed</button>
+    </div>
+    <script
+      src="https://kit.fontawesome.com/2cf6e8a249.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="main.js"></script>
   </body>
 </html>
