@@ -14,28 +14,28 @@ document.body.appendChild(component());
 
 const todos = [
   {
-    description: "Buy milk",
+    description: 'Buy milk',
     completed: true,
     index: 4,
   },
   {
-    description: "Wash the red car",
+    description: 'Wash the red car',
     completed: false,
     index: 3,
   },
   {
-    description: "Code for two hours on my milestone project",
+    description: 'Code for two hours on my milestone project',
     completed: false,
     index: 2,
   },
   {
-    description: "Apply for 50 Remote jobs",
+    description: 'Apply for 50 Remote jobs',
     completed: true,
     index: 1,
   },
 ];
 
-const todoEl = document.querySelector(".todo");
+const todoEl = document.querySelector('.todo');
 
 todos.sort((a, b) => {
   return a.index - b.index;
