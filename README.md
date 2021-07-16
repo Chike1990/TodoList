@@ -1,6 +1,6 @@
 # ToDo List App
 
-Todo List is a web application that allows users to add/remove the list of "to-dos". It provides an interface for adding to do activities, for visualizing the list of added tasks to complete. This is achieved using plain HTML, CSS, JavaScript objects, arrays, DOM, and basic events.
+Todo List is a web application that allows users to add/remove the list of "to-dos". It provides an interface for adding to do activities, for visualizing the list of added tasks to complete. This is achieved using plain HTML, CSS, JavaScript objects, arrays, DOM, basic events, and webpack.
 
 
 ![Screenshot](src/project_creenshot.png)
@@ -12,19 +12,21 @@ Todo List is a web application that allows users to add/remove the list of "to-d
 - JavaScript
 - Git flow
 - GitHub
+- web pack
 
 ### Prerequisites
 
 - Terminal (Bash)
 - Git
 - JavaScript
+  
+### Setup: How to start the Todo app
 
-### Setup: How to start the TicTacToe game
-
-- clone our repo: `https://github.com/Chike1990/ToDo_List`
-- cd into: `cd index.html`
-- run `index.html`
-## Authors
+- git clone the repo: `https://github.com/Chike1990/ToDo_List`
+- cd into: `Todo list folder`
+- npm install
+- npm start
+## Author
 👤 Chibuike Uzoechina
 
 - GitHub: [@Chike1990](https://github.com/Chike1990)
