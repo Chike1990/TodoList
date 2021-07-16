@@ -11,7 +11,6 @@ function component() {
 
 document.body.appendChild(component());
 
-
 const todos = [
   {
     description: 'Buy milk',
@@ -37,9 +36,7 @@ const todos = [
 
 const todoEl = document.querySelector('.todo');
 
-todos.sort((a, b) => {
-  return a.index - b.index;
-});
+todos.sort((a, b) => a.index - b.index);
 
 todos.forEach((todo) => {
   todoEl.innerHTML += `
