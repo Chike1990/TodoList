@@ -20,7 +20,7 @@ Todo List is a web application that allows users to add/remove the list of "to-d
 - Git
 - JavaScript
   
-### Setup: How to start the Todo app
+### Setup: How to start the Todo_List app
 
 - git clone the repo: `https://github.com/Chike1990/ToDo_List`
 - cd into: `Todo list folder`
