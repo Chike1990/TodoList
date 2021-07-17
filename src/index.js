@@ -1,51 +1,77 @@
-import _ from 'lodash';
-
-function component() {
-  const element = document.createElement('div');
-
-  // Lodash, now imported by this script
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-
-  return element;
-}
-
-document.body.appendChild(component());
-
-const todos = [
-  {
-    description: 'Buy milk',
-    completed: true,
-    index: 4,
-  },
-  {
-    description: 'Wash the red car',
-    completed: false,
-    index: 3,
-  },
-  {
-    description: 'Code for two hours on my milestone project',
-    completed: false,
-    index: 2,
-  },
-  {
-    description: 'Apply for 50 Remote jobs',
-    completed: true,
-    index: 1,
-  },
-];
-
-const todoEl = document.querySelector('.todo');
-
-todos.sort((a, b) => a.index - b.index);
-
-todos.forEach((todo) => {
-  todoEl.innerHTML += `
-    <li class="todo__list-item">
-        <div>
-            <input type="checkbox" id="todo-list-${todo.index}" class="todo__list-input" />
-            <label for="todo-list-${todo.index}">${todo.description}</label>
-        </div>
-        <i class="fas fa-ellipsis-v todo__list-menu-icon"></i>
-    </li>
-    `;
-});
+ //import { dragStart, drop } from "./dragAndDrop";
+ //import { updateCompleted } from "./update";
+ const todos = JSON.parse(localStorage.getItem("todo")) || [];
+ console.log(todos);
+ const todoEl = document.querySelector(".todo");
+ const todoInputEl = document.querySelector(".todo-input");
+ 
+ displayTodos();
+ 
+ document.addEventListener("keydown", (e) => {
+   if (e.code === "Enter") {
+     console.log("Hi there")
+     const todoDescription = todoInputEl.value.trim();
+     if (!todoInputEl.value)
+       return console.log("Todo description must not be empty");
+     createTodo(todos, todoDescription);
+     localStorage.setItem("todo", JSON.stringify(todos));
+     todoInputEl.value = "";
+     displayTodos();
+     console.log(todos);
+   }
+ });
+ 
+ document.addEventListener("change", function (event) {
+   updateCompleted(event);
+   localStorage.setItem("todo", JSON.stringify(todos));
+ });
+ 
+ function displayTodos() {
+   todoEl.innerHTML = "";
+   todos.forEach((todo) => {
+     todoEl.innerHTML += `
+         <li class="todo__list-item">
+             <div>
+                 <input ${
+                   todo.completed ? "checked" : ""
+                 } type="checkbox" id="todo-list-${
+       todo.index
+     }" class="todo__list-input" />
+                 <label for="todo-list-${todo.index}">${todo.description}</label>
+             </div>
+             <i class="fas fa-ellipsis-v todo__list-menu-icon" id="${
+               todo.index
+             }"></i>
+         </li>
+         `;
+   });
+ }
+ 
+ let dragged;
+ 
+ document.addEventListener(
+   "dragstart",
+   function (event) {
+     dragStart(event);
+   },
+   false
+ );
+ 
+ /* events fired on the drop targets */
+ document.addEventListener(
+   "dragover",
+   function (event) {
+     // prevent default to allow drop
+     event.preventDefault();
+   },
+   false
+ );
+ 
+ document.addEventListener(
+   "drop",
+   function (event) {
+     drop(event);
+   },
+   false
+ );
+ 

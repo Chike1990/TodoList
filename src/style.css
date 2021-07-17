@@ -23,7 +23,7 @@ i {
   transform: translate(-50%, -50%);
   background-color: #fff;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  width: 30%;
+  min-width: 30rem;
 }
 
 .header {
@@ -63,11 +63,24 @@ i {
   padding: 15px;
 }
 
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.todo-edit-input {
+  outline: none;
+  border: none;
+  width: 96%;
+}
+
 .todo__list-input {
   margin-right: 10px;
   cursor: pointer;
 }
-
 label {
   cursor: pointer;
 }
