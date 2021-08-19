@@ -1,4 +1,4 @@
-import "./style.css"
+import './style.css';
 
 // Array of todos object
 const todos = [
