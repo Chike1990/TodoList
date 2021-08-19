@@ -11,7 +11,6 @@ function component() {
 
 document.body.appendChild(component());
 
-  //Array of todos object
 const todos = [
   {
     description: 'Go to school',
@@ -31,9 +30,6 @@ const todos = [
     index: 0,
   },
 ];
-
-  // const todoContainer = document.querySelector('.todo');
-
 
 todos.forEach((todo) => {
   const p = document.createElement('p');
