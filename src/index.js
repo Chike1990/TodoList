@@ -1,31 +1,31 @@
 //Array of todos object
 const todos = [
   {
-    description: "Go to school",
+    description: 'Go to school',
     completed: false,
     index: 0,
   },
 
   {
-    description: "Prepare Dinner",
+    description: 'Prepare Dinner',
     completed: true,
     index: 1,
   },
 
   {
-    description: "wash",
+    description: 'wash',
     completed: false,
     index: 2,
   },
 ];
 
-const todoItems = document.querySelector(".todo__items");
+const todoItems = document.querySelector('.todo__items');
 
 // Populates DOM with todos
 const displayTodosOnUI = () => {
-  todoItems.innerHTML = "";
+  todoItems.innerHTML = '';
   todos.forEach((todo) => {
-    const checked = todo.completed ? "checked" : "";
+    const checked = todo.completed ? 'checked' : '';
     todoItems.innerHTML += `
   <div class="todo__placeholder">
 <div>
