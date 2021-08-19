@@ -11,31 +11,31 @@ function component() {
 
 document.body.appendChild(component());
 
-//Array of todos object
+  //Array of todos object
 const todos = [
   {
     description: 'Go to school',
     completed: false,
-    index: 0
+    index: 0,
   },
 
   {
     description: 'cook',
     completed: true,
-    index: 0
+    index: 0,
   },
 
   {
     description: 'wash',
     completed: false,
-    index: 0
-  }
+    index: 0,
+  },
 ];
 
-const todoContainer = document.querySelector(".todo");
+  // const todoContainer = document.querySelector('.todo');
 
-//Populates DOM with todos
+
 todos.forEach((todo) => {
-  const p = document.createElement("p");
+  const p = document.createElement('p');
   p.innerText = `${todo.description}`;
 });
