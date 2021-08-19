@@ -1,5 +1,5 @@
 import './style.css';
-import { toggleCompleted } from './upDate.js';
+import toggleCompleted from './upDate.js';
 
 // Array of todos object
 let todos = JSON.parse(localStorage.getItem('todos'));
