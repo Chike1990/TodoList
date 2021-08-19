@@ -1,4 +1,4 @@
-//Array of todos object
+// Array of todos object
 const todos = [
   {
     description: 'Go to school',
