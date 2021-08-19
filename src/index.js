@@ -1,37 +1,41 @@
-import _ from 'lodash';
+//Array of todos object
+todos = [
+    {
+      description: 'Go to school',
+      completed: false,
+      index: 0
+    },
 
-function component() {
-  const element = document.createElement('div');
+    {
+      description: 'Prepare Dinner',
+      completed: true,
+      index: 1
+    },
 
-  // Lodash, now imported by this script
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+    {
+      description: 'wash',
+      completed: false,
+      index: 2
+    }
+  ];
 
-  return element;
+const todoItems = document.querySelector(".todo__items");
+
+// Populates DOM with todos
+const displayTodosOnUI = () => {
+  todoItems.innerHTML = "";
+   todos.forEach((todo) => {
+    const checked = todo.completed ? "checked" : "";
+    todoItems.innerHTML += `
+  <div class="todo__placeholder">
+<div>
+  <input ${checked} type="checkbox" id="${todo.index}" class="todo__checkbox" >
+  <input class="todo__text ${checked}" value = "${todo.description}">
+</div>
+ <i class="todo__drag-icon fas fa-ellipsis-v" ></i>
+</div>
+  `;
+  });
 }
 
-document.body.appendChild(component());
-
-const todos = [
-  {
-    description: 'Go to school',
-    completed: false,
-    index: 0,
-  },
-
-  {
-    description: 'cook',
-    completed: true,
-    index: 0,
-  },
-
-  {
-    description: 'wash',
-    completed: false,
-    index: 0,
-  },
-];
-
-todos.forEach((todo) => {
-  const p = document.createElement('p');
-  p.innerText = `${todo.description}`;
-});
+displayTodosOnUI();
