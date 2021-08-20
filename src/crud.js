@@ -1,6 +1,6 @@
 const createTodo = (todos, todo) => {
   const indexes = [];
-  for (let i = 0; i < todos.length; i++) {
+  for (let i = 0; i < todos.length; i += 1) {
     indexes.push(todos[i].index);
   }
   let maxIndex = Math.max(...indexes);
@@ -13,15 +13,15 @@ const createTodo = (todos, todo) => {
 const deleteTodo = (todos, index) => {
   const todoIndex = todos.findIndex((todo) => todo.index === index);
   todos.splice(todoIndex, 1);
-}
+};
 
 const updateTodo = (todos, todoText, index) => {
   const todo = todos.find((todo) => todo.index === index);
   todo.description = todoText;
 };
 
-const clearCompletedTodos = (todos) => {
-  return todos.filter((todo) => todo.completed === false);
-};
+const clearCompletedTodos = (todos) => todos.filter((todo) => todo.completed === false);
 
-export { createTodo, updateTodo, clearCompletedTodos, deleteTodo };
+export {
+  createTodo, updateTodo, clearCompletedTodos, deleteTodo,
+};

@@ -1,19 +1,19 @@
 import './style.css';
 import toggleCompleted from './upDate.js';
-import { createTodo, updateTodo, clearCompletedTodos, deleteTodo } from "./crud.js";
+import {
+  createTodo, updateTodo, clearCompletedTodos, deleteTodo,
+} from './crud.js';
 
 // Array of todos object
-let todos = JSON.parse(localStorage.getItem("todos")) || [];
+let todos = JSON.parse(localStorage.getItem('todos')) || [];
 
-const todoItems = document.querySelector(".todo__items");
-
-displayTodosOnUI();
+const todoItems = document.querySelector('.todo__items');
 
 // Populate the DOM with todos
 function displayTodosOnUI() {
-  todoItems.innerHTML = "";
+  todoItems.innerHTML = '';
   todos.forEach((todo) => {
-    const checked = todo.completed ? "checked" : "";
+    const checked = todo.completed ? 'checked' : '';
     todoItems.innerHTML += `
       <div class="todo__placeholder">
         <div>
@@ -26,7 +26,7 @@ function displayTodosOnUI() {
   });
 }
 
-const todoInput = document.querySelector(".todo__input");
+const todoInput = document.querySelector('.todo__input');
 
 function addTodo() {
   if (!todoInput.value) return;
@@ -35,69 +35,66 @@ function addTodo() {
     completed: false,
   };
   createTodo(todos, newTodo);
-  localStorage.setItem("todos", JSON.stringify(todos));
-  todoInput.value = "";
+  localStorage.setItem('todos', JSON.stringify(todos));
+  todoInput.value = '';
   displayTodosOnUI();
 }
 
-document.addEventListener("change", (e) => {
+document.addEventListener('change', (e) => {
   const { classList, value, id } = e.target;
-  if (classList.contains("todo__text")) {
-    console.log(e);
-    updateTodo(todos, value, parseInt(id));
-    localStorage.setItem("todos", JSON.stringify(todos));
-    return displayTodosOnUI();
+  if (classList.contains('todo__text')) {
+    updateTodo(todos, value, parseInt(id, 10));
+    localStorage.setItem('todos', JSON.stringify(todos));
+    displayTodosOnUI();
+  } else {
+    const index = parseInt(e.target.id, 10);
+    toggleCompleted(todos, index);
+    localStorage.setItem('todos', JSON.stringify(todos));
+    displayTodosOnUI();
   }
-  const index = parseInt(e.target.id);
-  toggleCompleted(todos, index);
-  localStorage.setItem("todos", JSON.stringify(todos));
-  displayTodosOnUI();
 });
 
 document.addEventListener(
-  "focus",
+  'focus',
   (e) => {
-    if (e.target.classList.contains("todo__text")) {
-      console.log(e);
-      e.target.classList.remove("checked");
+    if (e.target.classList.contains('todo__text')) {
+      e.target.classList.remove('checked');
     }
   },
-  true
+  true,
 );
 
 document.addEventListener(
-  "blur",
+  'blur',
   (e) => {
-    if (e.target.classList.contains("todo__text")) {
-      console.log(e);
-      e.target.classList.add("checked");
+    if (e.target.classList.contains('todo__text')) {
+      e.target.classList.add('checked');
     }
   },
-  true
+  true,
 );
 
-document.addEventListener("keyup", (e) => {
-  if (e.code === "Enter" && e.target.classList.contains("todo__input")) {
-    console.log(e);
+document.addEventListener('keyup', (e) => {
+  if (e.code === 'Enter' && e.target.classList.contains('todo__input')) {
     addTodo();
   }
 });
 
-document.querySelector(".todo__input-icon").addEventListener("click", () => {
+document.querySelector('.todo__input-icon').addEventListener('click', () => {
   addTodo();
 });
 
-document.querySelector(".todo__clear-btn").addEventListener("click", () => {
+document.querySelector('.todo__clear-btn').addEventListener('click', () => {
   todos = clearCompletedTodos(todos);
-  localStorage.setItem("todos", JSON.stringify(todos));
+  localStorage.setItem('todos', JSON.stringify(todos));
   displayTodosOnUI();
 });
 
-document.addEventListener("click", (e) => {
-  if (e.target.classList.contains("todo__delete-icon")) {
-    const index = parseInt(e.target.id)
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('todo__delete-icon')) {
+    const index = parseInt(e.target.id, 10);
     deleteTodo(todos, index);
-    localStorage.setItem("todos", JSON.stringify(todos));
+    localStorage.setItem('todos', JSON.stringify(todos));
     displayTodosOnUI();
   }
-})
+});
