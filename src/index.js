@@ -59,11 +59,55 @@ function addTodo() {
   todoInput.value = "";
   displayTodosOnUI();
 }
-displayTodosOnUI();
+
 
 document.addEventListener('change', (e) => {
   const index = parseInt(e.target.id, 10);
   toggleCompleted(todos, index);
   localStorage.setItem('todos', JSON.stringify(todos));
+  displayTodosOnUI();
+}
+const index = parseInt(e.target.id);
+toggleCompleted(todos, index);
+localStorage.setItem("todos", JSON.stringify(todos));
+displayTodosOnUI();
+});
+
+document.addEventListener(
+  "focus",
+  (e) => {
+    if (e.target.classList.contains("todo__text")) {
+      console.log(e);
+      e.target.classList.remove("checked");
+    }
+  },
+  true
+);
+
+document.addEventListener(
+  "blur",
+  (e) => {
+    if (e.target.classList.contains("todo__text")) {
+      console.log(e);
+      e.target.classList.add("checked");
+    }
+  },
+  true
+);
+
+document.addEventListener("keyup", (e) => {
+  if (e.code === "Enter" && e.target.classList.contains("todo__input")) {
+    console.log(e);
+    addTodo();
+  }
+});
+
+document.querySelector(".todo__input-icon").addEventListener("click", () => {
+  addTodo();
+});
+
+document.querySelector(".todo__clear-btn").addEventListener("click", () => {
+  todos = clearCompletedTodos(todos);
+  localStorage.setItem("todos", JSON.stringify(todos));
   displayTodosOnUI();
 });
