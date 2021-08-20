@@ -1,5 +1,6 @@
 import './style.css';
 import toggleCompleted from './upDate.js';
+import { createTodo, updateTodo, clearCompletedTodos } from "./crud.js";
 
 // Array of todos object
 let todos = JSON.parse(localStorage.getItem('todos'));
@@ -44,6 +45,20 @@ const displayTodosOnUI = () => {
   });
 };
 
+
+const todoInput = document.querySelector(".todo__input");
+
+function addTodo() {
+  if (!todoInput.value) return;
+  const newTodo = {
+    description: todoInput.value,
+    completed: false,
+  };
+  createTodo(todos, newTodo);
+  localStorage.setItem("todos", JSON.stringify(todos));
+  todoInput.value = "";
+  displayTodosOnUI();
+}
 displayTodosOnUI();
 
 document.addEventListener('change', (e) => {
