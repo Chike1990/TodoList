@@ -2,7 +2,7 @@
 
 Todo List is a web application that allows users to add/remove the list of "to-dos". It provides an interface for adding to do activities, for visualizing the list of added tasks to complete. This is achieved using plain HTML, CSS, JavaScript objects, arrays, DOM, basic events, and webpack.
 
-![Screenshot](src\Screenshot.png)
+![Screenshot](src/Screenshot.png)
 
 ## Built With
 
