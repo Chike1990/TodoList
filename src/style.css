@@ -26,6 +26,10 @@
   font-weight: 200;
 }
 
+.todo_refresh-icon {
+  cursor: pointer;
+}
+
 .todo__input-box {
   display: flex;
   justify-content: space-between;
@@ -40,6 +44,10 @@
   border: none;
   outline: none;
   font-size: inherit;
+}
+
+.checked {
+  text-decoration: line-through;
 }
 
 .todo__input::placeholder {
@@ -88,8 +96,4 @@
 
 .todo__clear-btn:hover {
   text-decoration: underline;
-}
-
-.checked {
-  text-decoration: line-through;
 }
