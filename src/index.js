@@ -1,6 +1,6 @@
 import './style.css';
 import toggleCompleted from './upDate.js';
-import { createTodo, updateTodo, clearCompletedTodos } from "./crud.js";
+import { createTodo, updateTodo, clearCompletedTodos, deleteTodo } from "./crud.js";
 
 // Array of todos object
 let todos = JSON.parse(localStorage.getItem("todos")) || [];
@@ -20,7 +20,7 @@ function displayTodosOnUI() {
           <input ${checked} type="checkbox" id="${todo.index}" class="todo__checkbox" />
           <input class="todo__text ${checked}" value="${todo.description}" id="${todo.index}" />
         </div>
-        <i class="todo__delete-icon fas fa-ellipsis-v"></i>
+        <i class="todo__delete-icon fas fa-trash" id="${todo.index}"></i>
       </div>
     `;
   });
@@ -92,3 +92,12 @@ document.querySelector(".todo__clear-btn").addEventListener("click", () => {
   localStorage.setItem("todos", JSON.stringify(todos));
   displayTodosOnUI();
 });
+
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("todo__delete-icon")) {
+    const index = parseInt(e.target.id)
+    deleteTodo(todos, index);
+    localStorage.setItem("todos", JSON.stringify(todos));
+    displayTodosOnUI();
+  }
+})
