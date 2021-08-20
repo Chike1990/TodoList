@@ -3,48 +3,28 @@ import toggleCompleted from './upDate.js';
 import { createTodo, updateTodo, clearCompletedTodos } from "./crud.js";
 
 // Array of todos object
-let todos = JSON.parse(localStorage.getItem('todos'));
-if (!todos) {
-  todos = [
-    {
-      description: 'Go to school',
-      completed: false,
-      index: 0,
-    },
+let todos = JSON.parse(localStorage.getItem("todos")) || [];
 
-    {
-      description: 'cook',
-      completed: true,
-      index: 1,
-    },
+const todoItems = document.querySelector(".todo__items");
 
-    {
-      description: 'wash',
-      completed: false,
-      index: 2,
-    },
-  ];
-  localStorage.setItem('todos', JSON.stringify(todos));
-}
+displayTodosOnUI();
 
-const todoItems = document.querySelector('.todo__items');
-// Populates DOM with todos
-const displayTodosOnUI = () => {
-  todoItems.innerHTML = '';
+// Populate the DOM with todos
+function displayTodosOnUI() {
+  todoItems.innerHTML = "";
   todos.forEach((todo) => {
-    const checked = todo.completed ? 'checked' : '';
+    const checked = todo.completed ? "checked" : "";
     todoItems.innerHTML += `
-  <div class="todo__placeholder">
-<div>
-  <input ${checked} type="checkbox" id="${todo.index}" class="todo__checkbox" >
-  <input class="todo__text ${checked}" value = "${todo.description}">
-</div>
- <i class="todo__drag-icon fas fa-ellipsis-v" ></i>
-</div>
-  `;
+      <div class="todo__placeholder">
+        <div>
+          <input ${checked} type="checkbox" id="${todo.index}" class="todo__checkbox" />
+          <input class="todo__text ${checked}" value="${todo.description}" id="${todo.index}" />
+        </div>
+        <i class="todo__delete-icon fas fa-ellipsis-v"></i>
+      </div>
+    `;
   });
-};
-
+}
 
 const todoInput = document.querySelector(".todo__input");
 
@@ -60,17 +40,18 @@ function addTodo() {
   displayTodosOnUI();
 }
 
-
-document.addEventListener('change', (e) => {
-  const index = parseInt(e.target.id, 10);
+document.addEventListener("change", (e) => {
+  const { classList, value, id } = e.target;
+  if (classList.contains("todo__text")) {
+    console.log(e);
+    updateTodo(todos, value, parseInt(id));
+    localStorage.setItem("todos", JSON.stringify(todos));
+    return displayTodosOnUI();
+  }
+  const index = parseInt(e.target.id);
   toggleCompleted(todos, index);
-  localStorage.setItem('todos', JSON.stringify(todos));
+  localStorage.setItem("todos", JSON.stringify(todos));
   displayTodosOnUI();
-}
-const index = parseInt(e.target.id);
-toggleCompleted(todos, index);
-localStorage.setItem("todos", JSON.stringify(todos));
-displayTodosOnUI();
 });
 
 document.addEventListener(
