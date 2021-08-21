@@ -26,6 +26,8 @@ function displayTodosOnUI() {
   });
 }
 
+displayTodosOnUI();
+
 const todoInput = document.querySelector('.todo__input');
 
 function addTodo() {
@@ -57,7 +59,8 @@ document.addEventListener('change', (e) => {
 document.addEventListener(
   'focus',
   (e) => {
-    if (e.target.classList.contains('todo__text')) {
+    if (e.target.classList.contains('todo__text')
+    && e.target.classList.contains('checked')) {
       e.target.classList.remove('checked');
     }
   },
@@ -67,7 +70,8 @@ document.addEventListener(
 document.addEventListener(
   'blur',
   (e) => {
-    if (e.target.classList.contains('todo__text')) {
+    const todo = todos.find((todo) => todo.index === parseInt(e.target.id, 10));
+    if (e.target.classList.contains('todo__text') && todo.completed === true) {
       e.target.classList.add('checked');
     }
   },
