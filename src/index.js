@@ -1,12 +1,54 @@
-import _ from 'lodash';
+import './style.css';
+import toggleCompleted from './upDate.js';
 
-function component() {
-  const element = document.createElement('div');
+// Array of todos object
+let todos = JSON.parse(localStorage.getItem('todos'));
+if (!todos) {
+  todos = [
+    {
+      description: 'Go to school',
+      completed: false,
+      index: 0,
+    },
 
-  // Lodash, now imported by this script
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+    {
+      description: 'cook',
+      completed: true,
+      index: 1,
+    },
 
-  return element;
+    {
+      description: 'wash',
+      completed: false,
+      index: 2,
+    },
+  ];
+  localStorage.setItem('todos', JSON.stringify(todos));
 }
 
-document.body.appendChild(component());
+const todoItems = document.querySelector('.todo__items');
+// Populates DOM with todos
+const displayTodosOnUI = () => {
+  todoItems.innerHTML = '';
+  todos.forEach((todo) => {
+    const checked = todo.completed ? 'checked' : '';
+    todoItems.innerHTML += `
+  <div class="todo__placeholder">
+<div>
+  <input ${checked} type="checkbox" id="${todo.index}" class="todo__checkbox" >
+  <input class="todo__text ${checked}" value = "${todo.description}">
+</div>
+ <i class="todo__drag-icon fas fa-ellipsis-v" ></i>
+</div>
+  `;
+  });
+};
+
+displayTodosOnUI();
+
+document.addEventListener('change', (e) => {
+  const index = parseInt(e.target.id, 10);
+  toggleCompleted(todos, index);
+  localStorage.setItem('todos', JSON.stringify(todos));
+  displayTodosOnUI();
+});
